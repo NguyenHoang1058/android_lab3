@@ -1,20 +1,29 @@
 package com.oneg.android_lab3;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.ListView;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    private Toolbar topToolBar;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         ListView lv_Goods = (ListView) findViewById(R.id.lvGoods);
+        topToolBar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(topToolBar);
+
+
         ArrayList<Goods> arrGoods = new ArrayList<>();
         Goods goods = new Goods("Xe cần cẩu đa năng", "LTD Shop", R.drawable.xecau);
         Goods goods1 = new Goods("Gà xé cay", "Food Store", R.drawable.gaxe);
@@ -32,4 +41,5 @@ public class MainActivity extends AppCompatActivity {
         lv_Goods.setAdapter(customAdapter);
 
     }
+
 }
